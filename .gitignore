@@ -162,7 +162,7 @@ pip-log.txt
 .DS_Store
 
 ## Local build ignore
-2017_BuildConfig.cfg
+BuildConfig.cfg
 
 # Marcel's crap
 build_client.bat
