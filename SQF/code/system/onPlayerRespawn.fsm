@@ -11,16 +11,16 @@ item6[] = {"end_",1,250,250.000000,-200.000000,350.000000,-150.000000,0.000000,"
 item7[] = {"Loading_0_4",2,250,-75.000000,175.000000,25.000000,225.000000,0.000000,"Loading 0.4"};
 item8[] = {"Objects_REady",4,218,-175.000000,250.000000,-75.000000,300.000000,0.000000,"Objects REady"};
 item9[] = {"initCheck",2,250,-75.000000,300.000000,25.000000,350.000000,0.000000,"initCheck"};
-item10[] = {"true",8,218,-175.000000,375.000000,-75.000000,425.000000,0.000000,"true"};
-item11[] = {"Setup",2,250,-75.000000,425.000000,25.000000,475.000000,0.000000,"Setup"};
+item10[] = {"Count_Incoming",4,218,-175.000000,375.000000,-75.000000,425.000000,0.000000,"Count Incoming"};
+item11[] = {"Setup",2,4346,-75.000000,425.000000,25.000000,475.000000,0.000000,"Setup"};
 item12[] = {"_",8,218,-175.000000,575.000000,-75.000000,625.000000,0.000000,""};
-item13[] = {"___9",2,250,-75.000000,625.000000,25.000000,675.000000,0.000000,"0.9"};
+item13[] = {"setup_EH",2,250,-75.000000,625.000000,25.000000,675.000000,0.000000,"setup EH"};
 item14[] = {"_",8,218,-175.000000,675.000000,-75.000000,725.000000,0.000000,""};
 item15[] = {"__",2,250,-75.000000,725.000000,25.000000,775.000000,0.000000,"1"};
 item16[] = {"_",8,218,-175.000000,800.000000,-75.000000,850.000000,0.000000,""};
 item17[] = {"endloading",2,250,-75.000000,850.000000,25.000000,900.000000,0.000000,"endloading"};
 item18[] = {"true",8,218,-175.000000,900.000000,-75.000000,950.000000,0.000000,"true"};
-item19[] = {"End",1,4346,-75.000000,950.000000,25.000000,1000.000000,0.000000,"End"};
+item19[] = {"End",1,250,-75.000000,950.000000,25.000000,1000.000000,0.000000,"End"};
 item20[] = {"Initialized",4,218,-175.000000,0.000000,-75.000000,50.000000,0.000000,"Initialized"};
 item21[] = {"Disconnect",2,250,775.000000,450.000000,875.000000,500.000000,0.000000,"Disconnect"};
 item22[] = {"",7,210,821.000000,571.000000,829.000000,579.000000,0.000000,""};
@@ -59,8 +59,8 @@ link24[] = {26,27};
 link25[] = {27,28};
 link26[] = {28,29};
 link27[] = {29,21};
-globals[] = {25.000000,1,0,0,0,640,480,1,276,6316128,1,-485.225250,470.054199,1134.681885,216.202911,623,599,1};
-window[] = {2,-1,-1,-1,-1,651,125,1145,125,3,641};
+globals[] = {25.000000,1,0,0,0,640,480,1,276,6316128,1,-485.225250,470.054199,860.211548,-58.267448,622,599,1};
+window[] = {2,-1,-1,-1,-1,651,125,1145,125,3,640};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -196,13 +196,13 @@ class FSM
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {
-        /*%FSM<LINK "true">*/
-        class true
+        /*%FSM<LINK "Count_Incoming">*/
+        class Count_Incoming
         {
           priority = 0.000000;
           to="Setup";
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"((count serverRtn) > 1)"/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/
@@ -213,13 +213,136 @@ class FSM
     class Setup
     {
       name = "Setup";
-      init = /*%FSM<STATEINIT""">*/"player addEventHandler [""Killed"", {  }];" \n
-       "player addEventHandler [""HandleDamage"", {  }];" \n
+      init = /*%FSM<STATEINIT""">*/"diag_log format[""Server Return: %1"", serverRtn];" \n
        "" \n
-       "player addEventHandler [""Put"", {  }];" \n
-       "player addEventHandler [""Take"", {  }];" \n
-       "player addEventHandler [""Fired"", {  }];" \n
-       "player addEventHandler [""HandleRating"", {  }];" \n
+       "_player = player;" \n
+       "_pDir			= (serverRtn select 0);" \n
+       "		" \n
+       "//if (count (serverRtn select 1) > 1) then {" \n
+       "	diag_log format[""Invenotry%1"",(serverRtn select 1)];" \n
+       "	_goggles 		= ((serverRtn select 1) select 0);" \n
+       "	_helmet 		= ((serverRtn select 1) select 1);" \n
+       "	_assignedItems 	= ((serverRtn select 1) select 2);" \n
+       "//};" \n
+       "" \n
+       "//if (count (serverRtn select 2) > 1) then {" \n
+       "	diag_log format[""primaryWep %1"",(serverRtn select 2)];" \n
+       "	_primaryWep		= ((serverRtn select 2) select 0);" \n
+       "	_pItems			= ((serverRtn select 2) select 1);" \n
+       "	_pMags			= ((serverRtn select 2) select 2);" \n
+       "//};" \n
+       "//if (count (serverRtn select 3) > 1) then {" \n
+       "	diag_log format[""secondaryWep %1"",(serverRtn select 3)];" \n
+       "	_secondaryWep	= ((serverRtn select 3) select 0);" \n
+       "	_sItems			= ((serverRtn select 3) select 1);" \n
+       "	_sMags			= ((serverRtn select 3) select 2);	" \n
+       "//};" \n
+       "" \n
+       "//if (count (serverRtn select 4) > 1) then {" \n
+       "	diag_log format[""handgunWep %1"",(serverRtn select 4)];" \n
+       "	_handgunWep		= ((serverRtn select 4) select 0);" \n
+       "	_hItems			= ((serverRtn select 4) select 1);" \n
+       "	_HMags			= ((serverRtn select 4) select 2);" \n
+       "//};" \n
+       "" \n
+       "//`Backpack` = ? , `Vest` = ? , `Uniform` = ?" \n
+       "//[""BACKPACK"",[],[],[]]" \n
+       "//if (count (serverRtn select 5) > 1) then {" \n
+       "	diag_log format[""backpackarray %1"",(serverRtn select 5)];" \n
+       "	_backpack		= ((serverRtn select 5) select 0);" \n
+       "	_bMags			= ((serverRtn select 5) select 1);" \n
+       "//};" \n
+       "//if (count (serverRtn select 6) > 1) then {" \n
+       "	//[""VEST"",[],[],[]]" \n
+       "	diag_log format[""VestArray %1"",(serverRtn select 6)];" \n
+       "	_vest			= ((serverRtn select 6) select 0);" \n
+       "	_vMags			= ((serverRtn select 6) select 1);" \n
+       "//};" \n
+       "//if (count (serverRtn select 7) > 1) then {" \n
+       "	//[""UNIFORM"",[],[],[]]" \n
+       "	diag_log format[""UniformArray %1"",(serverRtn select 7)];" \n
+       "	_uniform		= ((serverRtn select 7) select 0);" \n
+       "	_uMags			= ((serverRtn select 7) select 1);" \n
+       "//};" \n
+       "//if (count (serverRtn select 9) > 1) then {" \n
+       "	// State" \n
+       "	diag_log format[""stateArray %1"",(serverRtn select 8)];" \n
+       "	_currMuzzle		= ((serverRtn select 8) select 0);" \n
+       "	_currAnim		= ((serverRtn select 8) select 1);" \n
+       "//};" \n
+       "" \n
+       "diag_log format[""MedicalArray %1"",(serverRtn select 9)];" \n
+       "//setVariables for the player and so fourth" \n
+       "r_player_health = ((serverRtn select 9) select 0);" \n
+       "r_player_hunger = ((serverRtn select 9) select 1);" \n
+       "r_player_thirst = ((serverRtn select 9) select 2);" \n
+       "player setFatigue ((serverRtn select 9) select 3);" \n
+       "r_player_bleeding = ((serverRtn select 9) select 4);" \n
+       "r_player_bodyTemp = ((serverRtn select 8) select 2);" \n
+       "" \n
+       "// Load Player" \n
+       "_player setDir _pDir;" \n
+       "//_player playMove _currAnim;" \n
+       "" \n
+       "if (_uniform == """") then { removeUniform _player; } else { _player addUniform _uniform; };" \n
+       "if (_vest != """") then { _player addVest _vest; };" \n
+       "if (_backpack != """") then { _player addBackpack _backpack; };" \n
+       "" \n
+       "" \n
+       "//if (_primaryWep != """") then { _player addItemToUniform (_pMags select 0); _player addWeapon _primaryWep; _player setAmmo [(primaryWeapon _player), (_pMags select 1)]; };" \n
+       "if (_primaryWep != """") then { " \n
+       "	if (count _pMags > 1) then {	" \n
+       "		_player addMagazine [(_pMags select 0),(_pMags select 1)]; " \n
+       "	};" \n
+       "	" \n
+       "	_player addWeapon _primaryWep;  " \n
+       "	" \n
+       "	{ if (_x != """") then { _player addPrimaryWeaponItem _x; }; } forEach _pItems;" \n
+       "};" \n
+       "//if (_secondaryWep != """") then { _player addItemToUniform (_sMags select 0); _player addWeapon _secondaryWep; _player setAmmo [(secondaryWeapon _player), (_sMags select 1)]; };" \n
+       "if (_secondaryWep != """") then { " \n
+       "	if (count _sMags > 1) then {" \n
+       "		_player addMagazine [(_sMags select 0),(_sMags select 1)]; " \n
+       "	};" \n
+       "	" \n
+       "	_player addWeapon _secondaryWep; " \n
+       "	" \n
+       "	{ if (_x != """") then { _player addSecondaryWeaponItem _x; }; } forEach _sItems;" \n
+       "};" \n
+       "//[""hgun_found_P99"",["""","""",""""],[]]" \n
+       "//if (_handgunWep != """") then { _player addItemToUniform (_hMags select 0);  _player addWeapon _handgunWep; _player setAmmo [(handgunWeapon _player), (_hMags select 1)]; };" \n
+       "if (_handgunWep != """") then { 	" \n
+       "	if (count _hMags > 1) then {" \n
+       "		_player addMagazine [(_hMags select 0),(_hMags select 1)];  " \n
+       "	};" \n
+       "	" \n
+       "	_player addWeapon _handgunWep; " \n
+       "	" \n
+       "	{ if (_x != """") then { _player addHandgunItem _x; }; } forEach _hItems;" \n
+       "};" \n
+       "" \n
+       "if (_uniform != """") then {" \n
+       "	{ " \n
+       "		if (typeName _x == ""ARRAY"") then { _player addMagazine [(_x select 0), (_x select 1)]; } else { _player addItemToUniform _x; }; " \n
+       "	} forEach _uMags;" \n
+       "};" \n
+       "if (_vest != """") then {" \n
+       "	{ if (typeName _x == ""ARRAY"") then { _player addMagazine [(_x select 0), (_x select 1)]; } else { _player addItemToVest _x; }; } forEach _vMags;" \n
+       "};" \n
+       "if (_backpack != """") then {" \n
+       "	{ if (typeName _x == ""ARRAY"") then { _player addMagazine [(_x select 0), (_x select 1)]; } else { _player addItemToBackpack _x; }; } forEach _bMags;" \n
+       "};" \n
+       "" \n
+       "if (_helmet != """") then {" \n
+       "	_player addHeadgear _helmet; " \n
+       "};" \n
+       "if (_goggles != """") then {" \n
+       "	_player addGoggles _goggles;" \n
+       "};" \n
+       "{ _player linkItem _x; } forEach _assignedItems;" \n
+       "	" \n
+       "// Clear the Return" \n
+       "serverRtn = [];" \n
        "" \n
        "progressLoadingScreen 0.8;"/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
@@ -229,7 +352,7 @@ class FSM
         class _
         {
           priority = 0.000000;
-          to="___9";
+          to="setup_EH";
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
           condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
@@ -238,11 +361,19 @@ class FSM
       };
     };
     /*%FSM</STATE>*/
-    /*%FSM<STATE "___9">*/
-    class ___9
+    /*%FSM<STATE "setup_EH">*/
+    class setup_EH
     {
-      name = "___9";
-      init = /*%FSM<STATEINIT""">*/"progressLoadingScreen 0.9;" \n
+      name = "setup_EH";
+      init = /*%FSM<STATEINIT""">*/"player addEventHandler [""Killed"", {  }];" \n
+       "player addEventHandler [""HandleDamage"", {  }];" \n
+       "" \n
+       "player addEventHandler [""Put"", {  }];" \n
+       "player addEventHandler [""Take"", {  }];" \n
+       "player addEventHandler [""Fired"", {  }];" \n
+       "player addEventHandler [""HandleRating"", {  }];" \n
+       "" \n
+       "progressLoadingScreen 0.9;" \n
        ""/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
