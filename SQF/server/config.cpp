@@ -9,8 +9,15 @@ class CfgPatches {
 
 class CfgFunctions 
 {
-	class s2017 
+	class sA3PSF
 	{
-
+		class static
+		{
+			file = "\A3PSF\server\functions\static";
+			class hiveReadWrite { Description = ""; };
+			class hiveWrite { Description = ""; };
+			class selectRandomLocation { Description = ""; };
+			class setdate { Description = ""; };
+		};
 	};
 };

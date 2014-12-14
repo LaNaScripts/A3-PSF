@@ -1,0 +1,368 @@
+/*%FSM<COMPILE "C:\Program Files (x86)\Bohemia Interactive\Tools\FSM Editor Personal Edition\scriptedFSM.cfg, Player Monitor">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"init",0,250,-75.000000,-200.000000,25.000000,-150.000000,0.000000,"init"};
+item1[] = {"isServer",4,218,50.000000,-200.000000,150.000000,-150.000000,0.000000,"isServer"};
+item2[] = {"Player_Ready",2,250,-75.000000,50.000000,25.000000,100.000000,0.000000,"Player Ready"};
+item3[] = {"isPlayer",4,218,-175.000000,125.000000,-75.000000,175.000000,0.000000,"isPlayer"};
+item4[] = {"Loading",2,250,-75.000000,-50.000000,25.000000,0.000000,0.000000,"Loading"};
+item5[] = {"Client",4,218,-75.000000,-125.000000,25.000000,-75.000000,0.000000,"Client"};
+item6[] = {"end_",1,250,250.000000,-200.000000,350.000000,-150.000000,0.000000,"end" \n ""};
+item7[] = {"Loading_0_4",2,250,-75.000000,175.000000,25.000000,225.000000,0.000000,"Loading 0.4"};
+item8[] = {"Objects_REady",4,218,-175.000000,250.000000,-75.000000,300.000000,0.000000,"Objects REady"};
+item9[] = {"initCheck",2,250,-75.000000,300.000000,25.000000,350.000000,0.000000,"initCheck"};
+item10[] = {"true",8,218,-175.000000,375.000000,-75.000000,425.000000,0.000000,"true"};
+item11[] = {"Setup",2,250,-75.000000,425.000000,25.000000,475.000000,0.000000,"Setup"};
+item12[] = {"_",8,218,-175.000000,575.000000,-75.000000,625.000000,0.000000,""};
+item13[] = {"___9",2,250,-75.000000,625.000000,25.000000,675.000000,0.000000,"0.9"};
+item14[] = {"_",8,218,-175.000000,675.000000,-75.000000,725.000000,0.000000,""};
+item15[] = {"__",2,250,-75.000000,725.000000,25.000000,775.000000,0.000000,"1"};
+item16[] = {"_",8,218,-175.000000,800.000000,-75.000000,850.000000,0.000000,""};
+item17[] = {"endloading",2,250,-75.000000,850.000000,25.000000,900.000000,0.000000,"endloading"};
+item18[] = {"true",8,218,-175.000000,900.000000,-75.000000,950.000000,0.000000,"true"};
+item19[] = {"End",1,4346,-75.000000,950.000000,25.000000,1000.000000,0.000000,"End"};
+item20[] = {"Initialized",4,218,-175.000000,0.000000,-75.000000,50.000000,0.000000,"Initialized"};
+item21[] = {"Disconnect",2,250,775.000000,450.000000,875.000000,500.000000,0.000000,"Disconnect"};
+item22[] = {"",7,210,821.000000,571.000000,829.000000,579.000000,0.000000,""};
+item23[] = {"",7,210,821.000000,771.000000,829.000000,779.000000,0.000000,""};
+item24[] = {"",7,210,821.000000,971.000000,829.000000,979.000000,0.000000,""};
+item25[] = {"",7,210,821.000000,871.000000,829.000000,879.000000,0.000000,""};
+item26[] = {"",7,210,821.000000,71.000000,829.000000,79.000000,0.000000,""};
+item27[] = {"",7,210,821.000000,171.000000,829.000000,179.000000,0.000000,""};
+item28[] = {"",7,210,821.000000,271.000000,829.000000,279.000000,0.000000,""};
+item29[] = {"",7,210,821.000000,371.000000,829.000000,379.000000,0.000000,""};
+link0[] = {0,1};
+link1[] = {0,5};
+link2[] = {1,6};
+link3[] = {2,3};
+link4[] = {3,7};
+link5[] = {4,20};
+link6[] = {5,4};
+link7[] = {7,8};
+link8[] = {8,9};
+link9[] = {9,10};
+link10[] = {10,11};
+link11[] = {11,12};
+link12[] = {12,13};
+link13[] = {13,14};
+link14[] = {14,15};
+link15[] = {15,16};
+link16[] = {16,17};
+link17[] = {17,18};
+link18[] = {18,19};
+link19[] = {20,2};
+link20[] = {22,21};
+link21[] = {23,22};
+link22[] = {24,25};
+link23[] = {25,23};
+link24[] = {26,27};
+link25[] = {27,28};
+link26[] = {28,29};
+link27[] = {29,21};
+globals[] = {25.000000,1,0,0,0,640,480,1,276,6316128,1,-485.225250,470.054199,1134.681885,216.202911,623,599,1};
+window[] = {2,-1,-1,-1,-1,651,125,1145,125,3,641};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "Player Monitor";
+  class States
+  {
+    /*%FSM<STATE "init">*/
+    class init
+    {
+      name = "init";
+      init = /*%FSM<STATEINIT""">*/"_AuthAttempt = 0;" \n
+       "" \n
+       "0 fadeSound 0;" \n
+       "0 fadeMusic 0;" \n
+       "" \n
+       "serverRtn = [];" \n
+       "_debug = 1;" \n
+       "" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Client">*/
+        class Client
+        {
+          priority = 0.000000;
+          to="Loading";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!isServer"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "isServer">*/
+        class isServer
+        {
+          priority = 0.000000;
+          to="end_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"isServer"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Player_Ready">*/
+    class Player_Ready
+    {
+      name = "Player_Ready";
+      init = /*%FSM<STATEINIT""">*/"progressLoadingScreen 0.1;" \n
+       "" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "isPlayer">*/
+        class isPlayer
+        {
+          priority = 0.000000;
+          to="Loading_0_4";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"player == player"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Loading">*/
+    class Loading
+    {
+      name = "Loading";
+      init = /*%FSM<STATEINIT""">*/"progressLoadingScreen 0.1;" \n
+       "" \n
+       "if (_debug == 1) then {" \n
+       "	diag_log (""Loading"");" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Initialized">*/
+        class Initialized
+        {
+          priority = 0.000000;
+          to="Player_Ready";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!isnil ""bis_fnc_init"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "end_">*/
+    class end_
+    {
+      name = "end_";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Loading_0_4">*/
+    class Loading_0_4
+    {
+      name = "Loading_0_4";
+      init = /*%FSM<STATEINIT""">*/"progressLoadingScreen 0.4;" \n
+       "" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Objects_REady">*/
+        class Objects_REady
+        {
+          priority = 0.000000;
+          to="initCheck";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"getPosATL player nearObjectsReady 50;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "initCheck">*/
+    class initCheck
+    {
+      name = "initCheck";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "true">*/
+        class true
+        {
+          priority = 0.000000;
+          to="Setup";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Setup">*/
+    class Setup
+    {
+      name = "Setup";
+      init = /*%FSM<STATEINIT""">*/"player addEventHandler [""Killed"", {  }];" \n
+       "player addEventHandler [""HandleDamage"", {  }];" \n
+       "" \n
+       "player addEventHandler [""Put"", {  }];" \n
+       "player addEventHandler [""Take"", {  }];" \n
+       "player addEventHandler [""Fired"", {  }];" \n
+       "player addEventHandler [""HandleRating"", {  }];" \n
+       "" \n
+       "progressLoadingScreen 0.8;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="___9";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "___9">*/
+    class ___9
+    {
+      name = "___9";
+      init = /*%FSM<STATEINIT""">*/"progressLoadingScreen 0.9;" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="__";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "__">*/
+    class __
+    {
+      name = "__";
+      init = /*%FSM<STATEINIT""">*/"progressLoadingScreen 1;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="endloading";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "endloading">*/
+    class endloading
+    {
+      name = "endloading";
+      init = /*%FSM<STATEINIT""">*/"0 fadeSound 1;" \n
+       "0 fadeMusic 1;" \n
+       "" \n
+       "// Enable everything again." \n
+       "disableUserInput false;" \n
+       "player allowDamage true;" \n
+       "player enableSimulation true;" \n
+       "" \n
+       "0 cutText ["""", ""BLACK IN"",3];" \n
+       "" \n
+       "endLoadingScreen;" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "true">*/
+        class true
+        {
+          priority = 0.000000;
+          to="End";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "End">*/
+    class End
+    {
+      name = "End";
+      init = /*%FSM<STATEINIT""">*/"//make sure the player knows about everything within 50 meters." \n
+       "{player reveal _x} forEach (nearestObjects [getPosATL player, [], 50]);" \n
+       "" \n
+       "{player reveal _x} forEach (nearestObjects [getPosATL player, [""GroundWeaponHolder""], 50]);" \n
+       "" \n
+       "player allowDamage true;" \n
+       "player hideObjectGlobal false;" \n
+       "" \n
+       "" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Disconnect">*/
+    class Disconnect
+    {
+      name = "Disconnect";
+      init = /*%FSM<STATEINIT""">*/"endLoadingScreen;" \n
+       "" \n
+       " player enableSimulation false;" \n
+       "" \n
+       "if (_debug == 1) then {" \n
+       "	diag_log (""End Mission"");" \n
+       "};" \n
+       "" \n
+       "failMission ""LOSER"";" \n
+       "endMission ""END1"";" \n
+       "" \n
+       "" \n
+       "dayz_authed = true;" \n
+       "dayz_clientPreload = true;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="init";
+  finalStates[] =
+  {
+    "end_",
+    "End",
+  };
+};
+/*%FSM</COMPILE>*/

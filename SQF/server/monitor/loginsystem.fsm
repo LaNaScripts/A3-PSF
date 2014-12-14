@@ -1,0 +1,313 @@
+/*%FSM<COMPILE "C:\Program Files (x86)\Bohemia Interactive\Tools\FSM Editor Personal Edition\scriptedFSM.cfg, player">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"init",0,250,-675.000000,-125.000000,-575.000000,-75.000000,0.000000,"init"};
+item1[] = {"end",1,4346,-675.000000,875.000000,-575.000000,925.000000,0.000000,"end"};
+item2[] = {"_",4,218,-125.000000,-250.000000,-25.000000,-200.000000,0.000000,""};
+item3[] = {"Wait__",4,218,-675.000000,-25.000000,-575.000000,25.000000,0.000000,"Wait " \n ""};
+item4[] = {"GetPlayer",2,250,-675.000000,50.000000,-575.000000,100.000000,0.000000,"GetPlayer"};
+item5[] = {"Error",4,218,-875.000000,100.000000,-775.000000,150.000000,0.000000,"Error"};
+item6[] = {"is_New_Player",4,218,-725.000000,300.000000,-625.000000,350.000000,0.000000,"is New Player"};
+item7[] = {"Add_Player",2,250,-725.000000,400.000000,-625.000000,450.000000,0.000000,"Add Player"};
+item8[] = {"Setip_CharID",4,218,-675.000000,475.000000,-575.000000,525.000000,0.000000,"Setip CharID"};
+item9[] = {"setup_",2,250,-675.000000,550.000000,-575.000000,600.000000,0.000000,"setup" \n ""};
+item10[] = {"true",8,218,-675.000000,625.000000,-575.000000,675.000000,0.000000,"true"};
+item11[] = {"setup_EH",2,250,-675.000000,700.000000,-575.000000,750.000000,0.000000,"setup EH"};
+item12[] = {"isready",4,218,-675.000000,775.000000,-575.000000,825.000000,0.000000,"isready"};
+item13[] = {"Old_Player",4,218,-600.000000,300.000000,-500.000000,350.000000,0.000000,"Old Player"};
+item14[] = {"Log_IT_",2,250,-600.000000,400.000000,-500.000000,450.000000,0.000000,"Log IT" \n ""};
+item15[] = {"Pass",4,218,-675.000000,125.000000,-575.000000,175.000000,0.000000,"Pass"};
+item16[] = {"Inform_Player",2,250,-675.000000,225.000000,-575.000000,275.000000,0.000000,"Inform Player"};
+item17[] = {"Timeout",2,250,-1025.000000,50.000000,-925.000000,100.000000,0.000000,"Timeout"};
+item18[] = {"Retry",4,218,-875.000000,25.000000,-775.000000,75.000000,0.000000,"Retry"};
+item19[] = {"____FAKE____",9,760,0.000000,0.000000,0.000000,0.000000,0.000000,"____FAKE____"};
+link0[] = {0,3};
+link1[] = {3,4};
+link2[] = {4,5};
+link3[] = {4,15};
+link4[] = {5,17};
+link5[] = {6,7};
+link6[] = {7,8};
+link7[] = {8,9};
+link8[] = {9,10};
+link9[] = {10,11};
+link10[] = {11,12};
+link11[] = {12,1};
+link12[] = {13,14};
+link13[] = {14,8};
+link14[] = {15,16};
+link15[] = {16,6};
+link16[] = {16,13};
+link17[] = {17,18};
+link18[] = {18,4};
+link19[] = {2,19};
+link20[] = {19,2};
+globals[] = {25.000000,1,0,0,0,640,480,2,162,6316128,1,-1351.717285,27.610224,1193.240723,150.175308,845,639,1};
+window[] = {2,-1,-1,-1,-1,537,-1271,-251,11,3,863};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "player";
+  class States
+  {
+    /*%FSM<STATE "init">*/
+    class init
+    {
+      name = "init";
+      init = /*%FSM<STATEINIT""">*/"// Initialised variables" \n
+       "_player = _this;" \n
+       "_playerID = getPlayerUID _player;" \n
+       "_playerName = name _player;" \n
+       "_debug = true;" \n
+       "" \n
+       "" \n
+       "_respawnPoint = getMarkerpos ""respawn_Debug"";" \n
+       "_player setposATL _respawnPoint;" \n
+       "" \n
+       "_playerArray = [];" \n
+       "" \n
+       "" \n
+       "diag_log format[""Login Started - %1, %2, %3"",_player,_playerID,_playerName];" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Wait__">*/
+        class Wait__
+        {
+          priority = 0.000000;
+          to="GetPlayer";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"!isNil ""vehiclesDone"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_error = 0;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "end">*/
+    class end
+    {
+      name = "end";
+      init = /*%FSM<STATEINIT""">*/"if (_debug) then {" \n
+       "	diag_log (""Finished"");" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "GetPlayer">*/
+    class GetPlayer
+    {
+      name = "GetPlayer";
+      init = /*%FSM<STATEINIT""">*/"_playerArray = [_player,_playerID,_playerName] call sA3PSF_fnc_getPlayer;" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Pass">*/
+        class Pass
+        {
+          priority = 0.000000;
+          to="Inform_Player";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"((_playerArray select 0) == ""PASS"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Error">*/
+        class Error
+        {
+          priority = 0.000000;
+          to="Timeout";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"((_playerArray select 0) == ""ERROR"")"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_error = _error + 1;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Add_Player">*/
+    class Add_Player
+    {
+      name = "Add_Player";
+      init = /*%FSM<STATEINIT""">*/"[_player,_charID] call sA3PSF_fnc_addPlayer;" \n
+       "" \n
+       "if (_debug) then {" \n
+       "	diag_log (""AddPlayer"");" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Setip_CharID">*/
+        class Setip_CharID
+        {
+          priority = 0.000000;
+          to="setup_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_charID = 		_playerArray select 2;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "setup_">*/
+    class setup_
+    {
+      name = "setup_";
+      init = /*%FSM<STATEINIT""">*/"[_player,_playerID,_charID,_playerArray] call sA3PSF_fnc_setupPlayer;" \n
+       "" \n
+       "if (_debug) then {" \n
+       "	diag_log (""Setup"");" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "true">*/
+        class true
+        {
+          priority = 0.000000;
+          to="setup_EH";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "setup_EH">*/
+    class setup_EH
+    {
+      name = "setup_EH";
+      init = /*%FSM<STATEINIT""">*/"" \n
+       "" \n
+       "if (_debug) then {" \n
+       "	diag_log (""Setup EH"");" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "isready">*/
+        class isready
+        {
+          priority = 0.000000;
+          to="end";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"isNil ""serverOk"""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Log_IT_">*/
+    class Log_IT_
+    {
+      name = "Log_IT_";
+      init = /*%FSM<STATEINIT""">*/"if (_debug) then {" \n
+       "	diag_log (""Log it"");" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Setip_CharID">*/
+        class Setip_CharID
+        {
+          priority = 0.000000;
+          to="setup_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_charID = 		_playerArray select 2;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Inform_Player">*/
+    class Inform_Player
+    {
+      name = "Inform_Player";
+      init = /*%FSM<STATEINIT""">*/"//Process request" \n
+       "_newPlayer = 	_playerArray select 1;" \n
+       "_charID = 		_playerArray select 2;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Old_Player">*/
+        class Old_Player
+        {
+          priority = 0.000000;
+          to="Log_IT_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"count _playerArray > 6"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "is_New_Player">*/
+        class is_New_Player
+        {
+          priority = 0.000000;
+          to="Add_Player";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"count _playerArray < 6"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Timeout">*/
+    class Timeout
+    {
+      name = "Timeout";
+      init = /*%FSM<STATEINIT""">*/"_timeout = diag_ticktime;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Retry">*/
+        class Retry
+        {
+          priority = 0.000000;
+          to="GetPlayer";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(diag_ticktime - _timeout) > 5"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "____FAKE____">*/
+    class ____FAKE____
+    {
+      name = "____FAKE____";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "_">*/
+        class _
+        {
+          priority = 0.000000;
+          to="____FAKE____";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_player call s2017_fnc_playerJoin;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"diag_log (""Login System"");"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="init";
+  finalStates[] =
+  {
+    "end",
+  };
+};
+/*%FSM</COMPILE>*/

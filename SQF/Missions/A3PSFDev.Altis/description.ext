@@ -21,7 +21,7 @@ respawnDialog = 1;
 respawnDelay = 15;
 
 disabledAI=1;
-respawnTemplates[] = {"respawn_template"};
+respawnTemplates[] = {"respawn"};
 joinUnassigned = 0;
 disableChannels[]={0,2,6};
 

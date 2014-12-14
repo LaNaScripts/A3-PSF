@@ -6,22 +6,19 @@ startLoadingScreen ["Initialising..."];
 SV_instance = 1337; // The instance, move to server Vars
 
 
-//Both
-call compileFinal preprocessFileLineNumbers "both\init\compile.sqf";
-call compileFinal preprocessFileLineNumbers "both\init\variables.sqf";
-call compileFinal preprocessFileLineNumbers "both\init\globalEH.sqf";
-
 if(isServer) then {
 	//is a dedicated server
-	call compileFinal preprocessFileLineNumbers "server\init\compile.sqf";
-	call compileFinal preprocessFileLineNumbers "server\init\variables.sqf";
-	call compileFinal preprocessFileLineNumbers "server\init\serverEH.sqf";
+	call compileFinal preprocessFileLineNumbers "\A3PSF\server\init\compile.sqf";
+	call compileFinal preprocessFileLineNumbers "\A3PSF\server\init\variables.sqf";
+	call compileFinal preprocessFileLineNumbers "\A3PSF\server\init\serverEH.sqf";
 };
 
 if (!isServer) then {
-	call compileFinal preprocessFileLineNumbers "client\init\compile.sqf";
-	call compileFinal preprocessFileLineNumbers "client\init\variables.sqf";
-	call compileFinal preprocessFileLineNumbers "client\init\clientEH.sqf";
+	waitUntil {!isNull player && isPlayer player};
+	
+	call compileFinal preprocessFileLineNumbers "\A3PSF\code\init\compile.sqf";
+	call compileFinal preprocessFileLineNumbers "\A3PSF\code\init\variables.sqf";
+	call compileFinal preprocessFileLineNumbers "\A3PSF\code\init\clientEH.sqf";
 };
 
 
