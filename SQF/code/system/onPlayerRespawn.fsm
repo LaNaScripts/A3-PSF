@@ -3,7 +3,7 @@
 /*
 item0[] = {"init",0,250,-75.000000,-200.000000,25.000000,-150.000000,0.000000,"init"};
 item1[] = {"isServer",4,218,50.000000,-200.000000,150.000000,-150.000000,0.000000,"isServer"};
-item2[] = {"Player_Ready",2,250,-75.000000,50.000000,25.000000,100.000000,0.000000,"Player Ready"};
+item2[] = {"Player_Ready",2,4346,-75.000000,50.000000,25.000000,100.000000,0.000000,"Player Ready"};
 item3[] = {"isPlayer",4,218,-175.000000,125.000000,-75.000000,175.000000,0.000000,"isPlayer"};
 item4[] = {"Loading",2,250,-75.000000,-50.000000,25.000000,0.000000,0.000000,"Loading"};
 item5[] = {"Client",4,218,-75.000000,-125.000000,25.000000,-75.000000,0.000000,"Client"};
@@ -12,7 +12,7 @@ item7[] = {"Loading_0_4",2,250,-75.000000,175.000000,25.000000,225.000000,0.0000
 item8[] = {"Objects_REady",4,218,-175.000000,250.000000,-75.000000,300.000000,0.000000,"Objects REady"};
 item9[] = {"initCheck",2,250,-75.000000,300.000000,25.000000,350.000000,0.000000,"initCheck"};
 item10[] = {"Count_Incoming",4,218,-175.000000,375.000000,-75.000000,425.000000,0.000000,"Count Incoming"};
-item11[] = {"Setup",2,4346,-75.000000,425.000000,25.000000,475.000000,0.000000,"Setup"};
+item11[] = {"Setup",2,250,-75.000000,425.000000,25.000000,475.000000,0.000000,"Setup"};
 item12[] = {"_",8,218,-175.000000,575.000000,-75.000000,625.000000,0.000000,""};
 item13[] = {"setup_EH",2,250,-75.000000,625.000000,25.000000,675.000000,0.000000,"setup EH"};
 item14[] = {"_",8,218,-175.000000,675.000000,-75.000000,725.000000,0.000000,""};
@@ -59,7 +59,7 @@ link24[] = {26,27};
 link25[] = {27,28};
 link26[] = {28,29};
 link27[] = {29,21};
-globals[] = {25.000000,1,0,0,0,640,480,1,276,6316128,1,-485.225250,470.054199,860.211548,-58.267448,622,599,1};
+globals[] = {25.000000,1,0,0,0,640,480,1,276,6316128,1,-394.473694,379.302612,524.973633,-220.190369,622,599,1};
 window[] = {2,-1,-1,-1,-1,651,125,1145,125,3,640};
 *//*%FSM</HEAD>*/
 class FSM
@@ -111,6 +111,13 @@ class FSM
     {
       name = "Player_Ready";
       init = /*%FSM<STATEINIT""">*/"progressLoadingScreen 0.1;" \n
+       "" \n
+       "playerJoin = player;" \n
+       "publicVariableServer ""playerJoin"";" \n
+       "" \n
+       "if (_debug == 1) then {" \n
+       "	diag_log (""Ready"");" \n
+       "};" \n
        "" \n
        ""/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
@@ -171,7 +178,9 @@ class FSM
       name = "Loading_0_4";
       init = /*%FSM<STATEINIT""">*/"progressLoadingScreen 0.4;" \n
        "" \n
-       ""/*%FSM</STATEINIT""">*/;
+       "if (_debug == 1) then {" \n
+       "	diag_log (""Loading 04"");" \n
+       "};"/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {
@@ -192,7 +201,9 @@ class FSM
     class initCheck
     {
       name = "initCheck";
-      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      init = /*%FSM<STATEINIT""">*/"if (_debug == 1) then {" \n
+       "	diag_log (""init Check"");" \n
+       "};"/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {

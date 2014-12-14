@@ -16,6 +16,7 @@ if (isNil "_playerObj") exitWith {
 	diag_log format["%1: nil player object, _this:%2", __FILE__, _this];
 };
 
+
 _playerObj call sA3PSF_fnc_updatePlayer;
 //remove death EH
 _playerObj removeAllMPEventHandlers "mpkilled"; 

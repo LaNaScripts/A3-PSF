@@ -50,9 +50,9 @@ class CfgSurvival {
 			goggles = "";
 			helmet = "";
 			assignedItems[] = {"ItemMap"};
-			backpack[] = {"B_FieldPack_cbr_Repair",{},{}}; //["B_FieldPack_cbr_Repair",["ToolKit"]]
-			vest[] = {"V_TacVest_khk",{},{}}; // ["V_TacVest_khk",[""]]
-			uniform[] = {"Survival_Guide",{},{}}; //["U_C_Poloshirt_stripped",[""]]
+			backpack[] = {"",{},{}}; //["B_FieldPack_cbr_Repair",["ToolKit"]]
+			vest[] = {"",{},{}}; // ["V_TacVest_khk",[""]]
+			uniform[] = {"U_C_Poloshirt_stripped",{},{}}; //["U_C_Poloshirt_stripped",[""]]
 			
 			primaryArray[] = {"LMG_Mk200_F",{},{}}; //Primary Weapons ["LMG_Mk200_F",["","",""],
 			secondaryArray[] = {"",{},{}}; //secondary Weapons
@@ -70,7 +70,7 @@ class CfgRespawnTemplates
 	};
 };
 
-#include "ui\defines.hpp"
+#include "\A3PSF\code\ui\defines.hpp"
 
 class RscStandardDisplay;
 class RscControlsGroup;

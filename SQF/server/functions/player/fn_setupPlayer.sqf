@@ -160,6 +160,9 @@ if (isPlayer _player) then {
 	};
 	
 	[_player] joinSilent grpNull;
+	
+	_key = format["CHILD:103:%1:%2:%3:",_playerID,_charID,1];
+	_key call sA3PSF_fnc_hiveWrite;
 
 
 } else { if (true) exitwith { }; };

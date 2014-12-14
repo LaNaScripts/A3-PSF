@@ -1,11 +1,13 @@
+call compileFinal preprocessFileLineNumbers "\A3PSF\server\init\compile.sqf";
+call compileFinal preprocessFileLineNumbers "\A3PSF\server\init\variables.sqf";
+call compileFinal preprocessFileLineNumbers "\A3PSF\server\init\serverEH.sqf";
+
 [] spawn {
-	_fps = { diag_log format["DEBUG FPS: %1",str(diag_fps)]; };
+	_fps = { call sA3PSF_fnc_fps; };
 	_timeNDate = { call sA3PSF_fnc_setdate; };
 
-	[_weather, 1, []] call GVA3PSF_perFrameHandlerArray;
-	[_fps, 300, []] call GVA3PSF_perFrameHandlerArray;
-	[_timeNDate, 300, []] call GVA3PSF_perFrameHandlerArray;
+	[_fps, 300, []] call gA3PSF_fnc_addPerFrameHandler;
+	[_timeNDate, 300, []] call gA3PSF_fnc_addPerFrameHandler;
 
-	["perFrameHandler", "onEachFrame", GVA3PSF_perFrameHandlerArray] call BIS_fnc_addStackedEventHandler;
+	["perFrameHandler", "onEachFrame", gA3PSF_fnc_addPerFrameHandler] call BIS_fnc_addStackedEventHandler;
 };
-
