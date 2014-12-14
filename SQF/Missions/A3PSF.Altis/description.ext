@@ -1,0 +1,33 @@
+class Header
+{
+	gameType = SURVIVAL;
+	minPlayers = 0;
+	maxPlayers = 100;
+};
+
+author = "R4Z0R49";
+OnLoadName = "A3-PSF";
+OnLoadMission = "Arma 3 - Persistence Survival Framework";
+loadScreen = "images\logo.paa";
+
+// Debug Console only available for logged in Admins
+enableDebugConsole = 2;
+
+respawn = "BASE";
+briefing = 0;
+respawnDialog = 1;
+respawnDelay = 15;
+
+disabledAI=1;
+respawnTemplates[] = {"respawn_template"};
+joinUnassigned = 0;
+disableChannels[]={0,2,6};
+
+//Defines if the debriefing is shown or not at the end of the mission.
+debriefing = 0;
+
+corpseRemovalMinTime = 600;
+corpseRemovalMaxTime = 1200;
+
+scriptedPlayer = 1;
+enableItemsDropping = 0;
