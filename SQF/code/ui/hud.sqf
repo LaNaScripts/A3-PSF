@@ -1,10 +1,5 @@
 _HUD = 
 {
-	if (!Local Player) ExitWith {};
-	WaitUntil {!IsNull Player};
-	WaitUntil {Alive Player};
-	WaitUntil {player == player};
-
 	disableSerialization; 
 	cutRsc ["UI_Monitor", "PLAIN"]; 
 	_display = uiNamespace getVariable "UI_Monitor_display"; 

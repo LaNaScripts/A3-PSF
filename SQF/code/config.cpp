@@ -70,6 +70,8 @@ class CfgRespawnTemplates
 	};
 };
 
+#include "ui\defines.hpp"
+
 class RscStandardDisplay;
 class RscControlsGroup;
 class RscText;
