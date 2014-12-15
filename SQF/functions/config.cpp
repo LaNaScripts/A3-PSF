@@ -32,5 +32,10 @@ class CfgFunctions
 			class onPerFrameHandler;
 			class removePerFrameHandler;
 		};
+		class player
+		{
+			file = "A3PSF\functions\global\player";
+			class allGear;
+		};
 	};
 };
