@@ -11,7 +11,5 @@ if(_outcome == "PASS") then {
 };
 
 setDate _date;
-PV_SetDate = _date;
-publicVariable "PV_SetDate";
 
 _date
