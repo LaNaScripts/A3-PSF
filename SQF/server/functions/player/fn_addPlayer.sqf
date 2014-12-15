@@ -16,5 +16,5 @@ _uniform = getArray (_config >> "uniform");
 //Wait for HIVE to be free
 //20:54:45 HiveExt(0): [Error] Error executing |CHILD:203:3:[]:[["",[],[]],["",[],[]],["U_C_Poloshirt_stripped",[],[]]]:|
 //_key = format["CHILD:203:%1:%2:%3:",_charID,[],[_bcpk,_vest,_uniform]];
-_key = format["CHILD:203:%1:%2:%3:",_charID,[],[]];
+_key = format["CHILD:203:%1:%2:%3:%4:%5:%6:%7:%8:",_charID,[],[],[],[],[],[],[]];
 _key call sA3PSF_fnc_hiveWrite;
