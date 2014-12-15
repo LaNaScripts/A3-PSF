@@ -1,0 +1,1 @@
+serverVar_LootSpawner =			compileFinal preprocessFileLineNumbers "\A3PSF\server\compile\spawnLoot.sqf";
