@@ -4,11 +4,6 @@ _player = _this select 0;
 _playerID = _this select 1;
 _characterID = _this select 2;
 _playerArray = _this select 3;
-_playerSide = side _player;
-_orginalView = cameraView;
-if (_orginalView == "GUNNER") then {_orginalView = "INTERNAL";};
-
-_dummyGroup = createGroup _playerSide;
 
 _defaultConfig = (configFile >> "CfgSurvival" >> "defaultSettings");
 
@@ -62,11 +57,13 @@ _stateArray = _primary select 3;
 _worldspace = _primary select 4;
 _sanity = _primary select 5;
 
+/*
 _i = 0;
 {
 	diag_log format["%1:%2",_i,_x];
 	_i = _i + 1;
 } foreach _playerArray;
+*/
 
 if (_isNew) then {
 	_config = (configFile >> "CfgSurvival" >> "Inventory" >> "Default");
@@ -158,11 +155,7 @@ if (isPlayer _player) then {
 		_pDirection = (_pos select 0);
 		_worldPos = (_pos select 1);
 	};
-	
-	[_player] joinSilent grpNull;
-	
+		
 	_key = format["CHILD:103:%1:%2:%3:",_playerID,_charID,1];
 	_key call sA3PSF_fnc_hiveWrite;
-
-
-} else { if (true) exitwith { }; };
+};
