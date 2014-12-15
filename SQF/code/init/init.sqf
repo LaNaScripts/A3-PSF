@@ -1,6 +1,11 @@
-WaitUntil {!IsNull Player};
+WaitUntil {!isNull Player};
 WaitUntil {Alive Player};
 WaitUntil {player == player};
+
+player allowDamage false;
+player hideObjectGlobal true;
+startLoadingScreen ["Initialising..."];
+0 cutText ["","BLACK"];
 
 call compileFinal preprocessFileLineNumbers "\A3PSF\code\init\compile.sqf";
 call compileFinal preprocessFileLineNumbers "\A3PSF\code\init\variables.sqf";
